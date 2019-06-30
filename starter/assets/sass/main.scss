@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
+@import "reset";
+
+body {
+  font-family: "Roboto", sans-serif;
+  // background: purple;
+}
+
+
+#BillsApp {
+  background: rgb(252, 236, 252);
+  background: -webkit-linear-gradient(-45deg, rgba(252, 236, 252, 1) 0%, rgba(253, 137, 215, 1) 29%, rgba(251, 166, 225, 1) 62%, rgba(255, 124, 216, 1) 100%);
+  background: linear-gradient(135deg, rgba(252, 236, 252, 1) 0%, rgba(253, 137, 215, 1) 29%, rgba(251, 166, 225, 1) 62%, rgba(255, 124, 216, 1) 100%);
+  height: 100vh;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+    }
+  }
+
+  #AllBills {
+    .container {
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .total-bills {
+      padding: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 95%;
+
+      .text {
+        font-size: 1.3rem;
+      }
+
+      .number {
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 300;
+      }
+    }
+  }
+}
