@@ -24,6 +24,7 @@ export default class AllBills extends Component {
                     src="https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg"
                     alt=""
                   />
+                  <i class="fas fa-cog" />
                 </div>
                 <div className="title">Spotify</div>
               </div>

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(59);
+var _react = __webpack_require__(46);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23,6 +23,10 @@ var _Header2 = _interopRequireDefault(_Header);
 var _AllBills = __webpack_require__(234);
 
 var _AllBills2 = _interopRequireDefault(_AllBills);
+
+var _Menu = __webpack_require__(236);
+
+var _Menu2 = _interopRequireDefault(_Menu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51,7 +55,8 @@ var BillsApp = function (_Component) {
         "div",
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_AllBills2.default, null)
+        _react2.default.createElement(_AllBills2.default, null),
+        _react2.default.createElement(_Menu2.default, null)
       );
     }
   }]);
@@ -75,7 +80,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(59);
+var _react = __webpack_require__(46);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -138,7 +143,8 @@ var AllBills = function (_Component) {
                   _react2.default.createElement("img", {
                     src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
                     alt: ""
-                  })
+                  }),
+                  _react2.default.createElement("i", { "class": "fas fa-cog" })
                 ),
                 _react2.default.createElement(
                   "div",
@@ -231,7 +237,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(59);
+var _react = __webpack_require__(46);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -283,9 +289,127 @@ exports.default = Header;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(59);
+var _react = __webpack_require__(46);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Menu = function (_Component) {
+  _inherits(Menu, _Component);
+
+  function Menu() {
+    _classCallCheck(this, Menu);
+
+    var _this = _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(Menu, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "nav",
+        { id: "floating-menu" },
+        _react2.default.createElement(
+          "div",
+          { className: "link" },
+          _react2.default.createElement(
+            "div",
+            { className: "icon" },
+            _react2.default.createElement("i", { className: "fab fa-cc-mastercard" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "text" },
+            "text"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "link" },
+          _react2.default.createElement(
+            "div",
+            { className: "icon" },
+            _react2.default.createElement("i", { className: "fab fa-cc-mastercard" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "text" },
+            "save"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "link" },
+          _react2.default.createElement(
+            "div",
+            { className: "icon" },
+            _react2.default.createElement("i", { className: "fab fa-cc-mastercard" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "text" },
+            "transfer"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "link" },
+          _react2.default.createElement(
+            "div",
+            { className: "icon" },
+            _react2.default.createElement("i", { className: "fab fa-cc-mastercard" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "text" },
+            "settings"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "add-button" },
+          _react2.default.createElement(
+            "div",
+            { className: "icon-plus" },
+            "+"
+          )
+        )
+      );
+    }
+  }]);
+
+  return Menu;
+}(_react.Component);
+
+exports.default = Menu;
+
+/***/ }),
+
+/***/ 237:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(46);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -339,4 +463,4 @@ _reactDom2.default.render(_react2.default.createElement(App, null), app);
 
 /***/ })
 
-},[236]);
+},[237]);
