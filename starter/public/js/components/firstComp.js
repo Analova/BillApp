@@ -56,6 +56,7 @@ var BillsApp = function (_Component) {
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_AllBills2.default, null),
+        _react2.default.createElement("div", { className: "content-bg" }),
         _react2.default.createElement(_Menu2.default, null)
       );
     }
@@ -100,6 +101,39 @@ var AllBills = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (AllBills.__proto__ || Object.getPrototypeOf(AllBills)).call(this));
 
+    _this.showAllBills = function (bill) {
+      var bills = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+      return bills.map(function () {
+        return _react2.default.createElement(
+          "li",
+          { className: "bill", key: bill },
+          _react2.default.createElement(
+            "div",
+            { className: "company" },
+            _react2.default.createElement(
+              "div",
+              { className: "logo" },
+              " ",
+              _react2.default.createElement("img", {
+                src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
+                alt: ""
+              })
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "title" },
+              "Spotify"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "price" },
+            "$-25.99"
+          )
+        );
+      });
+    };
+
     _this.state = {};
     return _this;
   }
@@ -130,88 +164,7 @@ var AllBills = function (_Component) {
           _react2.default.createElement(
             "ul",
             { className: "bills-list" },
-            _react2.default.createElement(
-              "li",
-              { className: "bill" },
-              _react2.default.createElement(
-                "div",
-                { className: "company" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "logo" },
-                  " ",
-                  _react2.default.createElement("img", {
-                    src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
-                    alt: ""
-                  }),
-                  _react2.default.createElement("i", { "class": "fas fa-cog" })
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "title" },
-                  "Spotify"
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "price" },
-                "$-25.99"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              { className: "bill" },
-              _react2.default.createElement(
-                "div",
-                { className: "company" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "logo" },
-                  " ",
-                  _react2.default.createElement("img", {
-                    src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
-                    alt: ""
-                  })
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "title" },
-                  "Spotify"
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "price" },
-                "$-25.99"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              { className: "bill" },
-              _react2.default.createElement(
-                "div",
-                { className: "company" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "logo" },
-                  " ",
-                  _react2.default.createElement("img", {
-                    src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
-                    alt: ""
-                  })
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "title" },
-                  "Spotify"
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "price" },
-                "$-25.99"
-              )
-            )
+            this.showAllBills()
           )
         )
       );
