@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16,21 +16,25 @@ var _react = __webpack_require__(42);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Header = __webpack_require__(236);
+var _Header = __webpack_require__(237);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _AllBills = __webpack_require__(235);
+var _AllBills = __webpack_require__(236);
 
 var _AllBills2 = _interopRequireDefault(_AllBills);
 
-var _Menu = __webpack_require__(237);
+var _Menu = __webpack_require__(238);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _AddBill = __webpack_require__(234);
+var _AddBill = __webpack_require__(235);
 
 var _AddBill2 = _interopRequireDefault(_AddBill);
+
+var _immutabilityHelper = __webpack_require__(457);
+
+var _immutabilityHelper2 = _interopRequireDefault(_immutabilityHelper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54,8 +58,19 @@ var BillsApp = function (_Component) {
       });
     };
 
+    _this.saveBill = function (bill) {
+      var newBills = (0, _immutabilityHelper2.default)(_this.state.AllBills, {
+        $push: [bill]
+      });
+      _this.setState({
+        allBills: newBills
+      }, function () {
+        console.log(_this.state);
+      });
+    };
+
     _this.state = {
-      addBillOpen: false,
+      addBillOpen: true,
       AllBills: []
     };
     return _this;
@@ -69,7 +84,10 @@ var BillsApp = function (_Component) {
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_AllBills2.default, null),
-        _react2.default.createElement(_AddBill2.default, { addBillOpen: this.state.addBillOpen }),
+        _react2.default.createElement(_AddBill2.default, {
+          addBillOpen: this.state.addBillOpen,
+          saveBill: this.saveBill
+        }),
         _react2.default.createElement("div", { className: "content-bg" }),
         _react2.default.createElement(_Menu2.default, { clickeAddBillBtn: this.clickeAddBillBtn })
       );
@@ -83,7 +101,7 @@ exports.default = BillsApp;
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -101,6 +119,8 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -115,7 +135,26 @@ var AddBill = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (AddBill.__proto__ || Object.getPrototypeOf(AddBill)).call(this));
 
-    _this.state = {};
+    _this.inputChange = function (event) {
+      var name = event.target.name;
+      var value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+      _this.setState(_defineProperty({}, name, value)
+      //  () => {
+      //     console.log(this.state);
+      //   }
+      );
+    };
+
+    _this.handleSubmit = function (event) {
+      event.preventDefault();
+      console.log(_this.state);
+      _this.props.saveBill(_this.state);
+    };
+
+    _this.state = {
+      business_name: "",
+      price: 0
+    };
     return _this;
   }
 
@@ -138,26 +177,38 @@ var AddBill = function (_Component) {
           ),
           _react2.default.createElement(
             "form",
-            null,
+            { onSubmit: this.handleSubmit },
             _react2.default.createElement(
               "div",
               { className: "form-group" },
               _react2.default.createElement(
                 "lable",
-                { "for": "business_name" },
+                { htmlFor: "business_name" },
                 "Business Name"
               ),
-              _react2.default.createElement("input", { type: "text", id: "business_name", name: "business_name" })
+              _react2.default.createElement("input", {
+                type: "text",
+                id: "business_name",
+                name: "business_name",
+                onChange: this.inputChange,
+                value: this.state.business_name
+              })
             ),
             _react2.default.createElement(
               "div",
               { className: "form-group" },
               _react2.default.createElement(
                 "lable",
-                { "for": "price" },
+                { htmlFor: "price" },
                 "Price"
               ),
-              _react2.default.createElement("input", { type: "text", id: "price", name: "price" })
+              _react2.default.createElement("input", {
+                type: "text",
+                id: "price",
+                name: "price",
+                onChange: this.inputChange,
+                value: this.state.price
+              })
             ),
             _react2.default.createElement(
               "button",
@@ -177,7 +228,7 @@ exports.default = AddBill;
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -211,10 +262,10 @@ var AllBills = function (_Component) {
 
     _this.showAllBills = function (bill) {
       var bills = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-      return bills.map(function () {
+      return bills.map(function (i) {
         return _react2.default.createElement(
           "li",
-          { className: "bill", key: bill },
+          { className: "bill", key: i },
           _react2.default.createElement(
             "div",
             { className: "company" },
@@ -286,7 +337,7 @@ exports.default = AllBills;
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -344,7 +395,7 @@ exports.default = Header;
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -462,7 +513,7 @@ exports.default = Menu;
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -478,7 +529,7 @@ var _reactDom = __webpack_require__(101);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _BillsApp = __webpack_require__(230);
+var _BillsApp = __webpack_require__(231);
 
 var _BillsApp2 = _interopRequireDefault(_BillsApp);
 
@@ -524,4 +575,4 @@ _reactDom2.default.render(_react2.default.createElement(App, null), app);
 
 /***/ })
 
-},[238]);
+},[239]);

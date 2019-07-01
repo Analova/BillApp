@@ -6,11 +6,12 @@ export default class AllBills extends Component {
     this.state = {};
   }
 
+  
   showAllBills = bill => {
     const bills = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    return bills.map(() => {
+    return bills.map(i => {
       return (
-        <li className="bill" key={bill}>
+        <li className="bill" key={i}>
           <div className="company">
             <div className="logo">
               {" "}
