@@ -70,9 +70,17 @@ var BillsApp = function (_Component) {
       });
     };
 
+    _this.changeBillStatus = function (billIndex) {
+      console.log(billIndex);
+    };
+
     _this.state = {
       addBillOpen: false,
-      allBills: []
+      allBills: [{
+        business_name: "gaico",
+        price: 12,
+        status: "unpaid"
+      }]
     };
     return _this;
   }
@@ -84,7 +92,10 @@ var BillsApp = function (_Component) {
         "div",
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_AllBills2.default, { allBills: this.state.allBills }),
+        _react2.default.createElement(_AllBills2.default, {
+          allBills: this.state.allBills,
+          changeBillStatus: this.changeBillStatus
+        }),
         _react2.default.createElement(_AddBill2.default, {
           addBillOpen: this.state.addBillOpen,
           saveBill: this.saveBill
@@ -294,6 +305,23 @@ var AllBills = function (_Component) {
               "div",
               { className: "price" },
               bill.price
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "buttons" },
+              _react2.default.createElement(
+                "div",
+                {
+                  className: "paid",
+                  onClick: _this.props.changeBillStatus.bind(null, index)
+                },
+                _react2.default.createElement("i", { className: "fas fa-check" })
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "delete" },
+                _react2.default.createElement("i", { className: "fas fa-trash" })
+              )
             )
           );
         });

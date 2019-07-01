@@ -23,6 +23,17 @@ export default class AllBills extends Component {
               <div className="title">{bill.business_name}</div>
             </div>
             <div className="price">{bill.price}</div>
+            <div className="buttons">
+              <div
+                className="paid"
+                onClick={this.props.changeBillStatus.bind(null, index)}
+              >
+                <i className="fas fa-check" />
+              </div>
+              <div className="delete">
+                <i className="fas fa-trash" />
+              </div>
+            </div>
           </li>
         );
       });
