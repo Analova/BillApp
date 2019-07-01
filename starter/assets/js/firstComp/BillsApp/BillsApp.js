@@ -9,8 +9,8 @@ export default class BillsApp extends Component {
   constructor() {
     super();
     this.state = {
-      addBillOpen: true,
-      AllBills: []
+      addBillOpen: false,
+      allBills: []
     };
   }
 
@@ -21,12 +21,13 @@ export default class BillsApp extends Component {
   };
 
   saveBill = bill => {
-    const newBills = update(this.state.AllBills, {
+    const newBills = update(this.state.allBills, {
       $push: [bill]
     });
     this.setState(
       {
-        allBills: newBills
+        allBills: newBills,
+        addBillOpen: !this.state.addBillOpen
       },
       () => {
         console.log(this.state);
@@ -38,7 +39,7 @@ export default class BillsApp extends Component {
     return (
       <div id="BillsApp">
         <Header />
-        <AllBills />
+        <AllBills allBills={this.state.allBills} />
         <AddBill
           addBillOpen={this.state.addBillOpen}
           saveBill={this.saveBill}

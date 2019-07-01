@@ -59,19 +59,20 @@ var BillsApp = function (_Component) {
     };
 
     _this.saveBill = function (bill) {
-      var newBills = (0, _immutabilityHelper2.default)(_this.state.AllBills, {
+      var newBills = (0, _immutabilityHelper2.default)(_this.state.allBills, {
         $push: [bill]
       });
       _this.setState({
-        allBills: newBills
+        allBills: newBills,
+        addBillOpen: !_this.state.addBillOpen
       }, function () {
         console.log(_this.state);
       });
     };
 
     _this.state = {
-      addBillOpen: true,
-      AllBills: []
+      addBillOpen: false,
+      allBills: []
     };
     return _this;
   }
@@ -83,7 +84,7 @@ var BillsApp = function (_Component) {
         "div",
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_AllBills2.default, null),
+        _react2.default.createElement(_AllBills2.default, { allBills: this.state.allBills }),
         _react2.default.createElement(_AddBill2.default, {
           addBillOpen: this.state.addBillOpen,
           saveBill: this.saveBill
@@ -147,8 +148,12 @@ var AddBill = function (_Component) {
 
     _this.handleSubmit = function (event) {
       event.preventDefault();
-      console.log(_this.state);
+      _this.setState({
+        business_name: "",
+        price: 0
+      });
       _this.props.saveBill(_this.state);
+      console.log(_this.state);
     };
 
     _this.state = {
@@ -261,36 +266,62 @@ var AllBills = function (_Component) {
     var _this = _possibleConstructorReturn(this, (AllBills.__proto__ || Object.getPrototypeOf(AllBills)).call(this));
 
     _this.showAllBills = function (bill) {
-      var bills = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-      return bills.map(function (i) {
-        return _react2.default.createElement(
-          "li",
-          { className: "bill", key: i },
-          _react2.default.createElement(
-            "div",
-            { className: "company" },
+      var bills = _this.props.allBills;
+      if (bills.length > 0) {
+        return bills.map(function (bill, index) {
+          return _react2.default.createElement(
+            "li",
+            { className: "bill", key: index },
             _react2.default.createElement(
               "div",
-              { className: "logo" },
-              " ",
-              _react2.default.createElement("img", {
-                src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
-                alt: ""
-              })
+              { className: "company" },
+              _react2.default.createElement(
+                "div",
+                { className: "logo" },
+                " ",
+                _react2.default.createElement("img", {
+                  src: "https://cdn1.spiegel.de/images/image-1392206-860_poster_16x9-khrb-1392206.jpg",
+                  alt: ""
+                })
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "title" },
+                bill.business_name
+              )
             ),
             _react2.default.createElement(
               "div",
-              { className: "title" },
-              "Spotify"
+              { className: "price" },
+              bill.price
             )
-          ),
+          );
+        });
+      } else {
+        return _react2.default.createElement(
+          "li",
+          { className: "bill" },
           _react2.default.createElement(
             "div",
-            { className: "price" },
-            "$-25.99"
+            { className: "no-bills" },
+            " Please add a bill"
           )
         );
-      });
+      }
+    };
+
+    _this.billsTotalAmount = function () {
+      var bills = _this.props.allBills;
+      var total = 0;
+
+      for (var i = 0; i < bills.length; i++) {
+        total += parseInt(bills[i].price);
+      }
+      if (bills.length > 0) {
+        return total;
+      } else {
+        return 0;
+      }
     };
 
     _this.state = {};
@@ -317,7 +348,7 @@ var AllBills = function (_Component) {
             _react2.default.createElement(
               "div",
               { className: "number" },
-              "$874"
+              this.billsTotalAmount()
             )
           ),
           _react2.default.createElement(

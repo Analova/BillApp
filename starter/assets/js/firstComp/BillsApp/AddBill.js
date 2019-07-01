@@ -27,8 +27,12 @@ export default class AddBill extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+    this.setState({
+      business_name: "",
+      price: 0
+    });
     this.props.saveBill(this.state);
+    console.log(this.state);
   };
   render() {
     return (
