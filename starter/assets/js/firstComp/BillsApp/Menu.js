@@ -33,7 +33,7 @@ export default class Menu extends Component {
           </div>
           <div className="text">settings</div>
         </div>
-        <div className="add-button">
+        <div className="add-button" onClick={this.props.clickeAddBillBtn}>
           <div className="icon-plus">+</div>
         </div>
       </nav>

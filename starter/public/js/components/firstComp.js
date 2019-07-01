@@ -48,7 +48,16 @@ var BillsApp = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (BillsApp.__proto__ || Object.getPrototypeOf(BillsApp)).call(this));
 
-    _this.state = {};
+    _this.clickeAddBillBtn = function () {
+      _this.setState({
+        addBillOpen: !_this.state.addBillOpen
+      });
+    };
+
+    _this.state = {
+      addBillOpen: false,
+      AllBills: []
+    };
     return _this;
   }
 
@@ -60,9 +69,9 @@ var BillsApp = function (_Component) {
         { id: "BillsApp" },
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_AllBills2.default, null),
-        _react2.default.createElement(_AddBill2.default, null),
+        _react2.default.createElement(_AddBill2.default, { addBillOpen: this.state.addBillOpen }),
         _react2.default.createElement("div", { className: "content-bg" }),
-        _react2.default.createElement(_Menu2.default, null)
+        _react2.default.createElement(_Menu2.default, { clickeAddBillBtn: this.clickeAddBillBtn })
       );
     }
   }]);
@@ -115,7 +124,10 @@ var AddBill = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         "section",
-        { id: "AddBill", className: "active" },
+        {
+          id: "AddBill",
+          className: "" + (this.props.addBillOpen === true ? "active" : "")
+        },
         _react2.default.createElement(
           "div",
           { className: "container" },
@@ -432,7 +444,7 @@ var Menu = function (_Component) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "add-button" },
+          { className: "add-button", onClick: this.props.clickeAddBillBtn },
           _react2.default.createElement(
             "div",
             { className: "icon-plus" },

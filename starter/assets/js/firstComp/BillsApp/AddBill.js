@@ -8,7 +8,10 @@ export default class AddBill extends Component {
 
   render() {
     return (
-      <section id="AddBill" className="active">
+      <section
+        id="AddBill"
+        className={`${this.props.addBillOpen === true ? "active" : ""}`}
+      >
         <div className="container">
           <h2>Add a bill</h2>
           <form>
