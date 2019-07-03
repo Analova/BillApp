@@ -11,7 +11,10 @@ export default class AllBills extends Component {
     if (bills.length > 0) {
       return bills.map((bill, index) => {
         return (
-          <li className="bill" key={index}>
+          <li
+            className={`bill ${bill.status === "paid" ? "active" : ""}`}
+            key={index}
+          >
             <div className="company">
               <div className="logo">
                 {" "}
@@ -30,7 +33,10 @@ export default class AllBills extends Component {
               >
                 <i className="fas fa-check" />
               </div>
-              <div className="delete">
+              <div
+                className="delete"
+                onClick={this.props.deleteBill.bind(null, index)}
+              >
                 <i className="fas fa-trash" />
               </div>
             </div>

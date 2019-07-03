@@ -71,6 +71,38 @@ var BillsApp = function (_Component) {
     };
 
     _this.changeBillStatus = function (billIndex) {
+      var allBills = _this.state.allBills;
+      var bill = allBills[billIndex];
+      if (bill.status === "unpaid") {
+        bill.status = "paid";
+      } else {
+        bill.status = "unpaid";
+      }
+
+      var newState = (0, _immutabilityHelper2.default)(_this.state, {
+        allBills: {
+          $set: allBills
+        }
+      });
+
+      _this.setState(newState, function () {
+        console.log(_this.state);
+      });
+      // console.log(allBills[billIndex]);
+    };
+
+    _this.deleteBill = function (billIndex) {
+      var allBills = _this.state.allBills;
+      allBills.splice(billIndex, 1);
+
+      var newState = (0, _immutabilityHelper2.default)(_this.state, {
+        allBills: {
+          $set: allBills
+        }
+      });
+
+      _this.setState(newState);
+
       console.log(billIndex);
     };
 
@@ -94,7 +126,8 @@ var BillsApp = function (_Component) {
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_AllBills2.default, {
           allBills: this.state.allBills,
-          changeBillStatus: this.changeBillStatus
+          changeBillStatus: this.changeBillStatus,
+          deleteBill: this.deleteBill
         }),
         _react2.default.createElement(_AddBill2.default, {
           addBillOpen: this.state.addBillOpen,
@@ -169,7 +202,8 @@ var AddBill = function (_Component) {
 
     _this.state = {
       business_name: "",
-      price: 0
+      price: 0,
+      status: "unpaid"
     };
     return _this;
   }
@@ -282,7 +316,10 @@ var AllBills = function (_Component) {
         return bills.map(function (bill, index) {
           return _react2.default.createElement(
             "li",
-            { className: "bill", key: index },
+            {
+              className: "bill " + (bill.status === "paid" ? "active" : ""),
+              key: index
+            },
             _react2.default.createElement(
               "div",
               { className: "company" },
@@ -319,7 +356,10 @@ var AllBills = function (_Component) {
               ),
               _react2.default.createElement(
                 "div",
-                { className: "delete" },
+                {
+                  className: "delete",
+                  onClick: _this.props.deleteBill.bind(null, index)
+                },
                 _react2.default.createElement("i", { className: "fas fa-trash" })
               )
             )
